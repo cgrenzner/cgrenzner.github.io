@@ -41,7 +41,7 @@
                 center: [42, 2]
             });
 
-            L.tileLayer('//{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
+            L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
                 attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
                 subdomains: 'abcd',
                 maxZoom: 17,
@@ -62,7 +62,7 @@
                     method: "GET",
                     dataType: "jsonp",
                     success: function (respuesta) {
-                        console.info (respuesta) ;
+                        console.info(respuesta);
                         respuestaTerremotos(respuesta);
 
                     }
@@ -85,10 +85,10 @@
                     var total_terremotos = respuesta.earthquakes;
                     for (var i = 0; i < total_terremotos.length; i++) {
                         var terremoto = total_terremotos[i];
-                        var color = "#aa0808" 
-                            if  (terremoto.magnitude < 7){
-                                color = "#00ff00";
-                            }
+                        var color = "#aa0808"
+                        if (terremoto.magnitude < 7) {
+                            color = "#00ff00";
+                        }
                         terremotoPunto = new L.circleMarker([terremoto.lat, terremoto.lng],
                             {
                                 radius: parseInt(terremoto.magnitude * 2), //el radi significa el valor de la magnitud del terratrèmol
