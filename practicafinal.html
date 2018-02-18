@@ -1,0 +1,197 @@
+<html lang="es">
+
+<head>
+    <title>Prova0</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="autor" />
+    <meta name="description" content="descripción página">
+    <meta name="robots" content="index,follow">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        L_PREFER_CANVAS = true;
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    <script src="https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js"></script>
+    
+    <script src="js/leaflet-search.src.js"></script>
+    <link rel="stylesheet" href="css/leaflet-search.min.css" />
+    <link rel="stylesheet" href="css/stylenew.css">
+            
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+             
+    </style>
+    <script>
+        var map, esri, topoICGC;
+        var geojson, transports;
+        var randomValue;
+        var controlCapas;
+        var controlEscala;
+        $(document).ready(function () {
+
+            map = L.map('map', {
+                center: [41.3954, 2.16859],
+                zoom: 14,
+            });
+           
+            esri = L.tileLayer(
+                'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    maxZoom: 17,
+                    minZoom: 1,
+                    opacity:0.5,
+                    attribution: 'Tiles © Esri'
+                }).addTo(map);
+
+            topoICGC = L.tileLayer('https://geoserveis.icgc.cat/icc_mapesmultibase/noutm/wmts/topo/GRID3857/{z}/{x}/{y}.jpeg', {
+                maxZoom: 19,
+                minZoom: 1,
+                opacity:0.5,
+                attribution: 'ICGC'
+
+            });            
+            //inici GeoJSON AJAX capa equipaments 
+            equipaments = new L.GeoJSON.AJAX('datos/equipaments.geojson', {
+                    maxZoom: 19,
+                    minZoom: 14,
+                    style: function(feature) {
+                        return {
+                            fillColor: "#D9FF4D",
+                            color: "#D9FF4D",
+                            weight: 1,
+                            opacity: 0.5,
+                            fillOpacity: 0.8                                                               
+                        };
+                    }
+                  }).addTo(map);  
+            //fi GeoJSON AJAX capa equipaments
+            //inici GeoJSON AJAX capa verds 
+            verds = new L.GeoJSON.AJAX('datos/verdsmuc.geojson', {
+                    maxZoom: 19,
+                    minZoom: 14,
+                    style: function(feature) {
+                        return {
+                            fillColor: "#007F30",
+                            color: "#007F30",
+                            weight: 1,
+                            opacity: 0.5,
+                            fillOpacity: 0.5                                                               
+                        };
+                    }
+                  }).addTo(map);  
+            //fi GeoJSON AJAX capa verds
+             //inici GeoJSON AJAX capa buffer transports
+             coberturatransport = new L.GeoJSON.AJAX('datos/coberturatransport.geojson', {
+                    maxZoom: 19,
+                    minZoom: 14,
+                    style: function(feature) {
+                        return {
+                            fillColor: "#00106E",
+                            color: "#00106E",
+                            weight: 1,
+                            opacity: 0.5,
+                            fillOpacity: 0.5                                       
+                        };
+                    }
+                  }).addTo(map);  
+            //fi GeoJSON AJAX capa buffer
+            //inici GeoJSON AJAX capa transports 
+                  transports = new L.GeoJSON.AJAX('datos/transports.geojson', {
+                    maxZoom: 19,
+                    minZoom: 14,
+                    onEachFeature: function(feature, layer) {
+                      popupContent = "<b>" + feature.properties.equipament + "</b>";
+                      layer.bindPopup(popupContent);
+                    },
+                    pointToLayer: function(feature, latlng) {
+                      return L.circleMarker(latlng, {
+                        radius: 3,
+                        fillColor: "#00072E",
+                        color: "#ffffff",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.7
+                      });
+                    }
+                  }).addTo(map);
+            //fi GeoJSON AJAX capa transports  
+            //inici GeoJSON AJAX capa barris
+                       
+            function getColor(LLOGUER) {
+                    return LLOGUER > 1200 ? '#4d0017' :
+                    LLOGUER > 1100 ? '#66001f' :
+                    LLOGUER > 1000 ? '#800026' :
+                    LLOGUER > 900  ? '#BD0026' :
+                    LLOGUER > 800  ? '#E31A1C' :
+                    LLOGUER > 700  ? '#FC4E2A' :
+                    LLOGUER > 600   ? '#FD8D3C' :
+                    LLOGUER > 500   ? '#FEB24C' :
+                    LLOGUER > 400   ? '#FED976' :
+                                    '#FFEDA0';
+                }
+
+            barris = new L.GeoJSON.AJAX('datos/barrispreu.geojson', {
+                    maxZoom: 19,
+                    minZoom: 14,
+                    onEachFeature: function(feature, layer) {
+                      popupContent = "<b>" + feature.properties.N_Barri + "<br></b><h3>" + feature.properties.LLOGUER + "€ / mes</h3>";
+                      layer.bindPopup(popupContent);
+                    },
+                    
+                    style: function(feature) {
+                        return {
+                            fillColor: getColor(feature.properties.LLOGUER),
+                            color: "white",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.3,                                      
+                                    };
+                       
+                    }
+                  }).addTo(map);  
+                 
+            //fi GeoJSON AJAX capa barris  
+            
+
+            var baseMaps = {
+                "Ortofoto ESRI": esri,
+                "Topogràfic ICGC": topoICGC
+            };
+           
+            var overlayMaps = {
+                "Equipaments": equipaments,
+                "Zones verdes":verds,
+                "Transport públic (ferrocarril, metro i tramvia)": transports,
+                "Cobertura de transport públic (radi < 300 m) ": coberturatransport,
+                "barris": barris,                
+            };
+       
+            controlCapas = L.control.layers(baseMaps, overlayMaps, {
+                collapsed:false,              
+            });
+            controlCapas.addTo(map);
+            controlEscala = L.control.scale();
+            controlEscala.addTo(map);
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <a class="activelog" href="index.html"><img src="img/logo.png" alt="logo" width="5%"></a>
+    <div class="panel"><p>Mapa de preu mitjà de lloguer mensual a Barcelona i cobertura de serveis públics</p></div>
+    <div id="map"></div>
+</body>
+
+</html>

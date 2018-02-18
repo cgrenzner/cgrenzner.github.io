@@ -7,7 +7,7 @@
     <meta name="author" content="autor" />
     <meta name="description" content="descripción página">
     <meta name="robots" content="index,follow">
-    <link rel="stylesheet" href="Cesium/Widgets/widgets.css" />
+    <link rel="stylesheet" href="Cesium/Widgets/widgets.css" />   
     <script src="Cesium/Cesium.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
@@ -63,6 +63,13 @@
             margin: 5px;
             cursor: pointer;
             }
+          .activelog img {
+                    position:fixed;
+                    right:5px;
+                    bottom:50px;
+                    z-index:10000;
+                    width:60px;
+          }
 
     </style>
     <script>
@@ -169,7 +176,7 @@
 </head>
 
 <body>
-    
+    <a class="activelog" href="index.html"><img src="img/logo.png" alt="logo" width="5%"></a>
               <div id="capas">
                   <div id='bt_inicial'>Inicio</div>
                 <ul>

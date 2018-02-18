@@ -1,0 +1,135 @@
+ul,ol{list-style:none}
+h1,h2,h3,h4,h5,h6,pre,code{font-size:1em;}
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset{
+margin:0;padding:0;line-height:1; list-style:none;}
+a img,:link img,:visited img, fieldset{border:none;}
+input[type=submit], input[type=reset], input[type=button] { *filter:chroma(color=#000000); }            
+hr { clear:both; height:0; line-height:0; margin:0; padding:0; border:0; filter:alpha(opacity=0); }   
+
+body {    
+  font-size: 14px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+h1{
+  font-size:20px;
+}
+h2{
+  float:right;
+  font-size:15px;
+  list-style-type:none;
+}
+h3{
+  font-size:12px;
+  font-weight:normal;
+  text-align:center;
+}
+h4{
+  text-align:left;
+}
+#index{
+  height:10px;  
+  margin-bottom:20px;
+  padding:20px;
+  background-color:rgb(167, 171, 172); 
+}
+#index ul li{
+	display:inline;		
+}
+.active img{
+  margin-top:-15px;
+  width:60px;
+}
+.activelog img {
+  position:fixed;
+  right:5px;
+  bottom:20px;
+  z-index:10000;
+  width:60px;
+}
+.box{
+  margin-left:30px;
+}
+.box li{
+    float: left;
+    margin-right:10px;
+    margin-bottom:10px;
+    margin-top:10px;
+		padding: 0px;
+		position: relative;
+		overflow: hidden;
+}
+.box li{
+  float: left;
+  padding: 0px;
+  position: relative;
+  overflow: hidden;
+  border-radius:10px;
+}
+.box li:hover .caption{
+  opacity: 1;
+  
+}
+.box img{
+  margin: 0px;
+  padding: 0px;
+  float: left;
+  z-index: 4;
+  border-radius:10px;
+}
+.box .caption{
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  border-radius:10px;
+  -webkit-transition:all 0.45s ease-in-out;
+  -moz-transition:all 0.45s ease-in-out;
+  -o-transition:all 0.45s ease-in-out;
+  -ms-transition:all 0.45s ease-in-out;
+  transition:all 0.45s ease-in-out;
+}
+.box .blur{
+  background-color: rgba(0,0,0,0.65);
+  height: 400px;
+  width: 400px;
+  z-index: 5;
+  position: absolute;
+}
+
+.box .caption-text h6{
+  text-transform: uppercase;
+  font-size: 16px;
+  
+}
+.box .caption-text{
+  z-index: 10;
+  color: #fff;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  top:50px;
+}	
+a {
+  color:rgb(0, 0, 0);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color:rgb(0, 0, 0);
+  background-color: transparent;
+  text-decoration: underline;
+}
+  .panel {
+  position: fixed;
+  font-size:13px;
+  font-family:'Trebuchet MS';
+  left:50px;
+  top:10px;
+  max-width: 500px;
+  padding:10px;
+  background-color: white;
+  border: solid 1px black;
+  border-radius: 10px;
+  z-index: 1000; /*donar prioritat al div per sobre el mapa*/
+  opacity: 0.8;
+}

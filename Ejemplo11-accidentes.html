@@ -5,7 +5,7 @@
   <title>Accidentes BCN</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />     
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <style>
     body {
@@ -81,6 +81,13 @@
       position: relative;
       margin: 0;
       cursor: ew-resize;
+    }
+    .activelog img {
+      position:fixed;
+      left:5px;
+      bottom:25px;
+      z-index:10000;
+      width:60px;
     }
   </style>
 
@@ -172,13 +179,11 @@ function filtraDias(numdia){
   }
       
 }
-
-
 }); //fin ready Jquery
 </script>
 </head>
 <body>
-
+  <a class="activelog" href="index.html"><img src="img/logo.png" alt="logo" width="5%"></a>
   <div id='legend' class='legend'>
     <h4>Accidentes</h4>
   </div>

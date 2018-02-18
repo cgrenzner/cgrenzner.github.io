@@ -7,7 +7,7 @@
     <meta name="author" content="autor" />
     <meta name="description" content="descripción página">
     <meta name="robots" content="index,follow">
-    <link rel="stylesheet" href="https://www.instamaps.cat/llibreries/cesium/Widgets/widgets.css" />
+    <link rel="stylesheet" href="https://www.instamaps.cat/llibreries/cesium/Widgets/widgets.css" />    
     <script src="https://www.instamaps.cat/llibreries/cesium/Cesium.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
@@ -33,6 +33,13 @@
             overflow: hidden;
             height: 100%;
         }
+        .activelog img {
+            position:fixed;
+            right:5px;
+            bottom:40px;
+            z-index:10000;
+            width:60px;
+            }
     </style>
     <script>
         var map;
@@ -74,6 +81,8 @@
 </head>
 
 <body>
+        <a class="activelog" href="index.html"><img src="img/logo.png" alt="logo" width="5%"></a>
+        <div id="coord"></div>
     <div id="map"></div>
 </body>
 

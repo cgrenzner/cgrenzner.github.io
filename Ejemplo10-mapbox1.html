@@ -5,7 +5,8 @@
           <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
           <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
           <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="css/stylenew.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           <style>
               body { margin:0; padding:0; }
               #map { position:absolute; top:0; bottom:0; width:100%;height: 100%}
@@ -20,7 +21,7 @@
              style: 'mapbox://styles/cgrenzner/cjd3b3lzf28j72sp56byu9lcm', //style de mapbox
              center: [ 2.16859,41.3954],
              zoom: 13, 
-             pitch: 60 //fa que el mapa arrenqui amb un cert angle
+             pitch: 45 //fa que el mapa arrenqui amb un cert angle
          });
          map.addControl(new mapboxgl.NavigationControl());
 
@@ -29,6 +30,7 @@
       </script>
       </head>
       <body>
+         <a class="activelog" href="index.html"><img src="img/logo.png" alt="logo" width="5%"></a>    
       <div id="map"></div>
       </body>
       </html>
